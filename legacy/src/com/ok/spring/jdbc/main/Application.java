@@ -33,7 +33,10 @@ public class Application {
 						case 2:
 							System.out.println("Enter key -");
 							String keyG = br.readLine();
-							kvDao.findByKey(keyG);
+							String valueG = kvDao.findByKey(keyG);
+							if(valueG != null) {
+								System.out.println(new KeyVal(keyG, valueG));
+							}
 							break;
 						case 3:
 							System.exit(0);

@@ -25,7 +25,7 @@ public class KeyValDaoTemplate {
 
 		try {
 			jdbcTemplate.update(query, params);
-			System.out.println("Saved key: " + keyVal.getKey());
+			System.out.println("Saved: " + keyVal);
 
 			query = "SELECT count(*) kvcount FROM key_val";
 			Integer kvCount = jdbcTemplate.queryForObject(query, Integer.class);
@@ -40,12 +40,10 @@ public class KeyValDaoTemplate {
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		Object[] params = new Object[] { key };
-
 		String value = null;
 
 		try {
 			value = jdbcTemplate.queryForObject(query, params, String.class);
-			System.out.println(new KeyVal(key, value));
 		} catch(DataAccessException e) {
 			System.out.println("Error in fetching data..");
 		}
